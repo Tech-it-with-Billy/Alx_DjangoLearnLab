@@ -19,12 +19,12 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def list_books(request):
     books = Book.objects.all()
     authors = Author.objects.all()
-    template_name = 'relationship_app/list_books.html'
+    template_name = 'relationship_app/templates/relationship_app/list_books.html'
     return render(request, template_name, {'books': books, 'authors': authors})
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'relationship_app/library_detail.html'
+    template_name = 'relationship_app/templates/relationship_app/library_detail.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +34,7 @@ class LibraryDetailView(DetailView):
 class SignUpView(CreateView):
     form_class = UserCreationForm()
     success_url = reverse_lazy('login')
-    template_name = 'templates/relationship_app/register.html'
+    template_name = 'relationship_app/templates/relationship_app/register.html'
 
 urlpatterns = [
     path('login/', login, name='login'),
@@ -56,14 +56,14 @@ def is_member(user):
 @login_required
 @user_passes_test(is_librarian)
 def librarian_view(request):
-    return render(request, 'relationship_app/librarian.html')
+    return render(request, 'relationship_app/templates/relationship_app/librarian.html')
 
 @login_required
 @user_passes_test(is_admin)
 def admin_view(request):
-    return render(request, 'relationship_app/admin.html')
+    return render(request, 'relationship_app/templates/relationship_app/admin.html')
 
 @login_required
 @user_passes_test(is_member)
 def member_view(request):
-    return render(request, 'relationship_app/member.html')
+    return render(request, 'relationship_app/templates/relationship_app/member.html')
