@@ -48,10 +48,10 @@ def is_librarian(user):
     return user.userprofile.role == 'Librarian'
 
 def is_admin(user):
-    return user.userprofile.role == 'admin'
+    return user.userprofile.role == 'Admin'
 
 def is_member(user):
-    return user.userprofile.role == 'member'
+    return user.userprofile.role == 'Member'
 
 @login_required
 @user_passes_test(is_librarian)
