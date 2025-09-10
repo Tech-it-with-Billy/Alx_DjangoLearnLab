@@ -2,10 +2,10 @@ from django.views.generic import DetailView
 from django.shortcuts import render
 from .models import Author, Book, Library, Librarian
 
-def book_list(request):
+def list_books(request):
     books = Book.objects.all()
     authors = Author.objects.all()
-    return render(request, 'relationship_app/book_list.html', {'books': books, 'authors': authors})
+    return render(request, 'relationship_app/list_books.html', {'books': books, 'authors': authors})
 
 class LibraryView(DetailView):
     model = Library
