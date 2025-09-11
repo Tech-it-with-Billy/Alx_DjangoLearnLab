@@ -127,4 +127,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "relationship_app/templates/relationship_app/login"
 LOGOUT_REDIRECT_URL = "relationship_app/templates/relationship_app/logout"
 
-AUth_USER_MODEL = 'relationship_app.CustomUser'
