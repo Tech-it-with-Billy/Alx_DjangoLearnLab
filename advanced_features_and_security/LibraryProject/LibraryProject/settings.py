@@ -119,9 +119,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# ----------------------------
-# 🔒 Security Settings
-# ----------------------------
+# Security Settings
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -135,3 +133,6 @@ SECURE_HSTS_PRELOAD = True
 
 # Redirect all HTTP -> HTTPS
 SECURE_SSL_REDIRECT = True
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
