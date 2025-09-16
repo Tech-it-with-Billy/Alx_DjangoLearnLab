@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import permission_required
 from .models import Book
 from django import forms
 from django.http import HttpResponse
+from .forms import ExampleForm
 
 @permission_required('your_app_name.can_view', raise_exception=True)
 def book_list(request):
