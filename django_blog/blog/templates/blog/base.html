@@ -10,13 +10,17 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="base.html">Home</a></li>
-                <li><a href="{% url 'posts' %}">Blog Posts</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="blog/register.html">Register</a></li>
-            </ul>
+            <a href="{% url 'blog:post-list' %}">Posts</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'blog:post-create' %}">New Post</a>
+                <a href="{% url 'blog:profile' %}">Profile</a>
+                <a href="{% url 'blog:logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'blog:login' %}">Login</a>
+                <a href="{% url 'blog:register' %}">Register</a>
+            {% endif %}
         </nav>
+
     </header>
 
     <div class="content">
