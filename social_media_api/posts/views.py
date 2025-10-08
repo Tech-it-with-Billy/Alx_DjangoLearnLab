@@ -34,3 +34,16 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+class UserFeedsViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    A simple ViewSet for viewing user feeds.
+    """
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    pagination_class = UserPagination
+
+    def get_queryset(self):
+        user = self.request.user
+        following_users = user.following.all()
+        return Post.objects.filter(author__in=following_users).order_by('-created_at')
