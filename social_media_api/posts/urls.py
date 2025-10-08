@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostViewSet, CommentViewSet
+from .views import PostViewSet, CommentViewSet, UserFeedsViewSet, LikeViewSet, UnLikeViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
 post_list = PostViewSet.as_view({
@@ -27,7 +27,9 @@ urlpatterns = [
     path('comments/', comment_list, name='comment-list'),
     path('comments/<int:pk>/', comment_detail, name='comment-detail'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('feed/', post_list, name='user-feed'),
+    path('posts/<int:pk>/like/', LikeViewSet.as_view({'get': 'list', 'post': 'create'}), name='like-list'),
+    path('posts/<int:pk>/unlike/', UnLikeViewSet.as_view({'get': 'list', 'post': 'create'}), name='unlike-list'),
+    path('feed/', UserFeedsViewSet.as_view({'get': 'list'}), name='user-feed'),
 ]
 
             

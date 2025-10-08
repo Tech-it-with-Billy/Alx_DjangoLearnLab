@@ -33,3 +33,14 @@ class Like(models.Model):
 
     def __str__(self):
         return f'Like by {self.user.username} on {self.post.title}'
+
+class UnLike(models.Model):
+    post = models.ForeignKey(Post, related_name='unlikes', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='unlikes', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('post', 'user')
+
+    def __str__(self):
+        return f'Unlike by {self.user.username} on {self.post.title}'
