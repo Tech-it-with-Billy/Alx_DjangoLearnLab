@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='user-profile'),
     path('follow/<int:user_id>/', FollowUnfollowView.as_view(), name='follow-unfollow-username'),
-    path('follow/<int:user_id>/', FollowUnfollowView.as_view(), name='follow-unfollow-username'),
+    path('unfollow/<int:user_id>/', FollowUnfollowView.as_view(), name='follow-unfollow-username'),
     path('/feed/', UserProfileView.as_view(), name='user-feed'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     
