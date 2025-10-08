@@ -1,5 +1,5 @@
 from rest_framework import viewsets, permissions, filters
-from accounts.models import Post, Comment
+from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
