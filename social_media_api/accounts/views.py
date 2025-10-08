@@ -2,11 +2,11 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
-from .models import User
+from .models import User as CustomUser
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
     
@@ -32,7 +32,7 @@ class LoginView(APIView):
         return Response({'token': token.key, 'user': userdata}, status=status.HTTP_200_OK)
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
@@ -44,8 +44,8 @@ class FollowUnfollowView(generics.GenericAPIView):
     
     def post(self, request, user_id, *args, **kwargs):
         try:
-            target_user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
+            target_user = CustomUser.objects.get(id=user_id)
+        except CustomUser.DoesNotExist:
             return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
         
         if target_user == request.user:
